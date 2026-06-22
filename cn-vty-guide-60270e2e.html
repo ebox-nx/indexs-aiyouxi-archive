@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>V体育 · 日常陪伴的稳定入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #fce9d7 0%, #f7d9c4 35%, #f5d0b5 70%, #eed5be 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.6;
+            color: #342a22;
+        }
+
+        /* 主卡片容器 —— 白色信息卡片组 */
+        .card-wrap {
+            max-width: 1120px;
+            width: 100%;
+            background: rgba(255, 253, 250, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px 48px 40px 40px;
+            padding: 2.6rem 2rem 3rem;
+            box-shadow: 0 20px 40px -12px rgba(125, 80, 50, 0.25),
+                        0 8px 16px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 600px) {
+            .card-wrap {
+                padding: 1.8rem 1.2rem 2.2rem;
+                border-radius: 32px;
+            }
+        }
+
+        /* 主视觉 — 暖调标题区 */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.6rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #3f2e21;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.2rem 0.4rem;
+        }
+
+        .hero h1 span {
+            background: #ffffffcc;
+            padding: 0.1rem 1rem;
+            border-radius: 100px;
+            font-size: 2.2rem;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .hero .sub {
+            margin-top: 0.7rem;
+            font-size: 1.1rem;
+            color: #5f4a38;
+            background: rgba(255, 248, 240, 0.6);
+            display: inline-block;
+            padding: 0.4rem 1.8rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+            border: 1px solid #ffe8d8;
+        }
+
+        /* 介绍段 — 自然嵌入链接 */
+        .intro-block {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2.2rem 0 2rem;
+            border: 1px solid #ffede4;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 0.6rem;
+        }
+
+        .intro-text {
+            flex: 1 1 240px;
+            font-size: 1.05rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 0.8rem;
+        }
+
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-text a {
+            color: #c0693a;
+            font-weight: 550;
+            text-decoration: none;
+            padding: 0.15rem 0.25rem;
+            border-radius: 12px;
+            background: #fff3e9;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid #da8b60;
+        }
+
+        .intro-text a:hover {
+            background: #f0d9c5;
+            color: #402d1e;
+            border-bottom-color: #b06034;
+        }
+
+        /* 用途卡片 grid —— 特点/场景 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.4rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .grid-item {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 1.2rem 1.6rem;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(100, 60, 30, 0.06);
+            transition: transform 0.1s ease, box-shadow 0.2s;
+            border: 1px solid #f7e9df;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -8px rgba(115, 70, 40, 0.12);
+        }
+
+        .grid-item .icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .grid-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #3b2a1c;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            color: #5b4636;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* 适合人群 + 提示合并卡片 */
+        .row-duo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            margin: 2.4rem 0 2rem;
+        }
+
+        .info-card {
+            flex: 1 1 200px;
+            background: #ffffffef;
+            border-radius: 32px;
+            padding: 1.6rem 1.6rem 1.6rem 2rem;
+            border: 1px solid #f2ddcf;
+            backdrop-filter: blur(2px);
+        }
+
+        .info-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4b3626;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .info-card li {
+            margin: 0.4rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+            font-size: 0.98rem;
+            color: #3f2d1f;
+        }
+
+        .info-card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #c9875a;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .tip-box {
+            background: #fceee5;
+            border-radius: 32px;
+            padding: 1.6rem 1.8rem;
+            margin: 1rem 0 1.8rem;
+            border: 1px dashed #dbaa86;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tip-box .tip-label {
+            font-weight: 600;
+            background: #e9cfbb;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #302216;
+        }
+
+        .tip-box p {
+            flex: 1;
+            font-size: 0.98rem;
+            color: #3b2c20;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-mini {
+            margin-top: 1.8rem;
+            border-top: 1px solid #eddaca;
+            padding-top: 1.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #4b3728;
+            cursor: pointer;
+            padding: 0.5rem 0.2rem;
+            border-radius: 40px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .faq-mini summary:hover {
+            background: #f2ddcc;
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            background: #fffcf8;
+            padding: 0.4rem 1rem 0.2rem;
+            border-radius: 40px;
+        }
+
+        .faq-mini details p {
+            font-size: 0.95rem;
+            color: #3f3024;
+            padding: 0.2rem 0 0.6rem 0.2rem;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6d5a4a;
+            border-top: 1px solid #efddcf;
+            padding-top: 1.6rem;
+        }
+
+        .footer-note a {
+            color: #b4683c;
+            text-decoration: none;
+            font-weight: 500;
+            background: #f5e6db;
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+        }
+
+        .footer-note a:hover {
+            background: #e5cfbc;
+        }
+
+        .button-link {
+            display: inline-block;
+            background: #f1dacb;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #382719;
+            text-decoration: none;
+            border: 1px solid #eacbb8;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(130, 80, 40, 0.05);
+        }
+
+        .button-link:hover {
+            background: #e6c9b4;
+            border-color: #cfaa8f;
+            box-shadow: 0 4px 10px rgba(100, 60, 30, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-wrap">
+
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>
+            <span>V体育</span>
+            稳定入口
+        </h1>
+        <div class="sub">日常陪伴 · 温暖而简单</div>
+    </div>
+
+    <!-- 介绍段 — 自然链接 -->
+    <div class="intro-block">
+        <div class="intro-text">
+            <p>很多人习惯在打开浏览器时，先去一个熟悉的地方。就像每天顺手泡一杯茶，不需要犹豫。我们把 <a href="https://cn-vty.com">V体育</a> 定义为这样一个安静、稳定的日常入口——它不喧哗，不拥挤，但你总会想起它。</p>
+            <p>没有复杂的跳转，也没有铺天盖地的推送。你看到的，就是此刻最需要的页面结构。对于喜欢清爽体验的朋友来说，这样的设计本身就是一种体谅。</p>
+            <p>无论你是在通勤路上，还是窝在沙发里，它都恰好在那个位置等你。</p>
+        </div>
+    </div>
+
+    <!-- 用途卡片：场景化描述 -->
+    <div class="card-grid">
+        <div class="grid-item">
+            <span class="icon">📰</span>
+            <h3>信息速览</h3>
+            <p>快速浏览当日要点，不拖泥带水。</p>
+        </div>
+        <div class="grid-item">
+            <span class="icon">📌</span>
+            <h3>常驻工具</h3>
+            <p>收藏栏也好，记忆里也好，总能快速定位。</p>
+        </div>
+        <div class="grid-item">
+            <span class="icon">☕</span>
+            <h3>放松时刻</h3>
+            <p>零干扰的界面，像午后的一杯温饮。</p>
+        </div>
+        <div class="grid-item">
+            <span class="icon">🔗</span>
+            <h3>直接入口</h3>
+            <p>一个链接直达，省去层层查找的麻烦。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 + 习惯提示 -->
+    <div class="row-duo">
+        <div class="info-card">
+            <h4>👥 适合这样的人</h4>
+            <ul>
+                <li>喜欢干净、不杂乱的页面</li>
+                <li>想要一个不费力的每日起点</li>
+                <li>对“刚刚好”的节奏有偏好</li>
+                <li>不追求功能堆砌，更看重稳定</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h4>🌟 日常场景</h4>
+            <ul>
+                <li>工作间隙的快速查看</li>
+                <li>睡前最后关掉的页面</li>
+                <li>周末赖床时的随手一点</li>
+                <li>换设备后第一个找回的站点</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 提示卡片 自然风格 -->
+    <div class="tip-box">
+        <span class="tip-label">💡 一点体会</span>
+        <p>好的入口，是不用思考就能到达的地方。把 <a href="https://cn-vty.com">V体育</a> 放在顺手的位置，剩下的交给习惯。</p>
+    </div>
+
+    <!-- FAQ 摘要 轻量版 -->
+    <div class="faq-mini">
+        <details>
+            <summary>❓ 为什么叫“稳定入口”？</summary>
+            <p>这里没有花哨的重定向或动态干扰，页面结构长期保持清晰。你每次打开，看到的都是同样舒服的布局，不必重新适应。</p>
+        </details>
+        <details>
+            <summary>❓ 适合用手机打开吗？</summary>
+            <p>当然。卡片布局和圆角元素在手机上同样舒展，单手操作也没问题。可以试试添加到主屏幕。</p>
+        </details>
+        <details>
+            <summary>❓ 和别的页面有什么不同？</summary>
+            <p>不追求流量和转化，在设计上更接近一个“安静的落脚点”。没有弹窗催促，也没有眼花缭乱的广告位。</p>
+        </details>
+    </div>
+
+    <!-- 尾部 · 包含按钮感链接 -->
+    <div class="footer-note">
+        <p>
+            把 <a href="https://cn-vty.com" class="button-link">V体育</a> 加入书签，每次需要时总能找到。
+        </p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #7b6454;">
+            简单 · 稳定 · 不打扰
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
