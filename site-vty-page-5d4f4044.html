@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V体育 – 资料整理与信息索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: #071a2f;
+            background-image: radial-gradient(circle at 10% 30%, #1b3b5c 0%, #071a2f 80%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #e6edf5;
+            border-bottom: 3px solid #3b82f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #f5f7fa;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            scale: 1.1;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 640px;
+            margin: 0.5rem auto 1.2rem;
+            color: #b8cdff;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.25);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #cbdfff;
+        }
+
+        /* 主内容区 浅色正文 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+            margin-bottom: 1.8rem;
+            color: #0f172a;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: #334155;
+            margin-bottom: 1.8rem;
+            max-width: 800px;
+        }
+
+        /* 优势区 — 卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf4;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #0b1e33;
+        }
+
+        .card p {
+            color: #3f4a5c;
+            font-size: 0.98rem;
+        }
+
+        .card .emoji-badge {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        /* 说明区 两栏式 */
+        .info-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            background: white;
+            border-radius: 28px;
+            padding: 2.5rem 2.2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+            border: 1px solid #eef2f8;
+        }
+
+        .info-split .left {
+            flex: 1.2;
+            min-width: 260px;
+        }
+
+        .info-split .right {
+            flex: 2;
+            min-width: 280px;
+        }
+
+        .info-split .left h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0b1e33;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-split .left p {
+            color: #475569;
+        }
+
+        .info-split ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-split li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+
+        .info-split li::before {
+            content: "▹";
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        /* FAQ 摘要 */
+        .faq-block {
+            background: #eef5ff;
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            border: 1px solid #dbeafe;
+        }
+
+        .faq-item {
+            margin-bottom: 1.4rem;
+        }
+
+        .faq-item .question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #0f263f;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-item .answer {
+            color: #334155;
+            padding-left: 1.2rem;
+            border-left: 3px solid #93c5fd;
+        }
+
+        /* 链接特殊样式 — 强调色 */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 2.8rem 1.5rem;
+            margin-top: 2.5rem;
+            border-top: 2px solid #3b82f6;
+        }
+
+        .footer-links .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .footer-links .copy {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footer-links .links a {
+            color: #93c5fd;
+            border-bottom: none;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links .links a:hover {
+            color: white;
+            border-bottom: 1px solid #93c5fd;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 2rem 0;
+        }
+
+        .quiet-note {
+            font-size: 0.9rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .info-split {
+                padding: 1.5rem;
+            }
+            .footer-links .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links .links a {
+                margin: 0 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- hero 区 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>资料整理 · 信息索引</h1>
+            <p>围绕体育资讯与数据，做有结构的整理、分类与链接。<br>从分散的信息中，搭建可追溯的索引路径。</p>
+            <span class="tagline">📋 聚焦内容组织 · 不追逐噪声</span>
+        </div>
+    </header>
+
+    <!-- 优势区 -->
+    <div class="container">
+        <section>
+            <h2 class="section-title">索引的优势</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="emoji-badge">🗂️</span>
+                    <h3>分类梳理</h3>
+                    <p>将赛事、队伍、数据按主题归档，减少反复查找的负担。每次整理都基于明确的归类逻辑。</p>
+                </div>
+                <div class="card">
+                    <span class="emoji-badge">🔗</span>
+                    <h3>可靠链接</h3>
+                    <p>优先收录可长期访问的来源。对每个外部链接做简要标注，帮助判断信息背景与时效。</p>
+                </div>
+                <div class="card">
+                    <span class="emoji-badge">📌</span>
+                    <h3>持续维护</h3>
+                    <p>索引页定期更新，移除失效条目，补充新内容。保持资料的可用性与整洁度。</p>
+                </div>
+                <div class="card">
+                    <span class="emoji-badge">🧩</span>
+                    <h3>轻量结构</h3>
+                    <p>不堆砌广告或无关模块。页面以文本和列表为主，加载快，便于复制、引用或离线阅读。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 说明区：从资料整理角度展开 -->
+        <section>
+            <h2 class="section-title">信息整理的切入点</h2>
+            <div class="info-split">
+                <div class="left">
+                    <h3>整理 ≠ 汇总</h3>
+                    <p>有效的信息索引，需要在收集之后进行筛选、归并和标注。本页所引用的内容以中文公开资料为主，兼顾时效与覆盖度。</p>
+                    <p style="margin-top: 1.2rem;">如果你正在寻找一个能持续提供结构化体育信息参考的站点，<strong><a href="https://site-vty.com">V体育</a></strong> 是一个值得关注的索引起点。</p>
+                </div>
+                <div class="right">
+                    <ul>
+                        <li><strong>联赛资料</strong> — 欧洲五大联赛、NBA、中超等主要赛事的赛程、积分与历史数据链接</li>
+                        <li><strong>队伍与球员</strong> — 主力阵容变更、转会新闻、赛季统计的整理入口</li>
+                        <li><strong>赛事日历</strong> — 当月重点比赛、杯赛阶段与时间节点概览</li>
+                        <li><strong>规则与术语</strong> — 常见体育项目规则说明、判罚标准参考（面向入门者）</li>
+                        <li><strong>外部资源备注</strong> — 每一条链接都附带来源说明，方便核实</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ 摘要 -->
+        <section>
+            <h2 class="section-title">常见疑问摘要</h2>
+            <div class="faq-block">
+                <div class="faq-item">
+                    <div class="question">Q：这个索引页多久更新一次？</div>
+                    <div class="answer">主要链接和数据结构每两周检查一轮；赛事密集期会适当增加更新频次。每次更新都会记录时间标记。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">Q：我可以提交建议或新链接吗？</div>
+                    <div class="answer">目前以维护方筛选为主，暂不开放直接提交。但可以通过索引页底部链接的反馈渠道提出想法，会定期查看。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">Q：索引中是否包含深度分析或原创评论？</div>
+                    <div class="answer">本页定位是资料整理与导航，不输出分析或观点。所有内容均为对公开信息的索引和简要描述。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question">Q：外部链接的可靠性如何判断？</div>
+                    <div class="answer">优先选择有明确运营主体、更新稳定的站点。每个链接旁会标注来源类型（如官方、媒体、统计平台），供自行判断。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 一点边栏提示 -->
+        <div style="text-align: center; margin: 2.5rem 0 1rem;">
+            <span class="quiet-note">📎 页面内容基于公开资料整理，仅供参考。具体信息以各来源最新发布为准。</span>
+        </div>
+
+    </div>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+        <div class="container">
+            <span class="copy">© 资料索引 · 持续整理中</span>
+            <div class="links">
+                <a href="https://site-vty.com">V体育</a>
+                <a href="#">关于索引</a>
+                <a href="#">更新记录</a>
+                <a href="#">反馈</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
